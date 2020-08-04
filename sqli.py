@@ -24,7 +24,6 @@ def sqli(inj_str):
 
 
 def dumpRow(inj_str):
-    #Dump the field of that record_id
     output = ''
     for i in range(1, 1000): #Loop over characters
         inj = inj_str.replace("[POS]", str(i))
@@ -138,16 +137,15 @@ def main(args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser("usage: %prog -D <schema> -T <table1[,table2..]> -F <field1[,field2..]> --id-field <key-column> --id-value <key-value> --columns --dump")
-    parser.add_argument("-D", "--database", help="database", action="store")
-    parser.add_argument("-T", "--tables", help="table", action="store")
-    parser.add_argument("-TF", "--tables-file", help="tablefile", action="store")
-    parser.add_argument("-F", "--fields", help="fields", action="store")
-    parser.add_argument("-FF", "--fields-file", help="tablefile", action="store")
-    parser.add_argument("-W", "--where", help="where", action="store")
-    parser.add_argument("-R", "--request", help="request", action="store")
-    parser.add_argument("--columns", help="columns", action="store_true")
-    parser.add_argument("--dump", help="dump", action="store_true")
-    args = parser.parse_args()
+    parser = argparse.ArgumentParser("usage: %prog -D <schema> -T <table1[,table2..]> -F <field1[,field2..]> -W <where_condition/s> -R <burp_request_file> --columns --dump")
+    parser.add_argument("-D", "--database", help="<Optional> If not specified, current database", action="store")
+    parser.add_argument("-T", "--tables", help="Table names separated by comma", action="store")
+    parser.add_argument("-TF", "--tables-file", help="<Optional> Input file for table names", action="store")
+    parser.add_argument("-F", "--fields", help="<Optional> Column names separated by comma", action="store")
+    parser.add_argument("-FF", "--fields-file", help="<Optional> Input file for column names", action="store")
+    parser.add_argument("-W", "--where", help="<Optional> Where condition as in SQL query", action="store")
+    parser.add_argument("-R", "--request", help="Burp request file", action="store")
+    parser.add_argument("--columns", help="Only dump column names", action="store_true")
+    parser.add_argument("--dump", help="Dump content of the table and columns only if not -F specified", action="store_true")
 
     main(args)
