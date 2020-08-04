@@ -2,12 +2,13 @@
 A tool to exploit Boolean-based Blind SQL injections in PostgreSQL.
 It allows to extract columns of one/several tables and dump the content of them.
 
-Pending:
-- Dump database names
-- Dump table names
-- Extend funcitionality to Time-based SQLi
-- Add MySQL support
-- Add multithreading
+Steps to make it work
+---------------------
+1. Once you have the vulnerable request in Burp, right click on it and select Copy to file.
+2. Open the .sql file and insert the mark [INJ] in the injection point
+```json
+{"additionalInfo":{"libraryName":"template","templateType":"49[INJ]"},"paginationInfo":{"pageIndex":1,"recordsPerPage":"10","sortField":"templateName"}}
+```
 
 Example:
 --------
@@ -25,3 +26,11 @@ python sqli.py -T users -R request.sql --cols
 ```bash
 python sqli.py -TF table_names.txt -R request.sql --cols
 ```
+
+Pending:
+--------
+- Dump database names
+- Dump table names
+- Extend funcitionality to Time-based SQLi
+- Add MySQL support
+- Add multithreading
