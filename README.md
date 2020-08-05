@@ -7,7 +7,7 @@ Steps to make it work
 1. Once you have the vulnerable request in Burp, right click on it and select Copy to file.
 2. Open the .sql file and insert the mark [INJ] in the injection point
 ```json
-{"additionalInfo":{"libraryName":"template","templateType":"49[INJ]"},"paginationInfo":{"pageIndex":1,"recordsPerPage":"10","sortField":"templateName"}}
+{"additionalInfo":{"baseName":"house","houseType":"16[INJ]"},"paginationInfo":{"pageIndex":1,"recordsPerPage":"10","sortField":"baseName"}}
 ```
 
 Example:
