@@ -147,5 +147,6 @@ if __name__ == "__main__":
     parser.add_argument("-R", "--request", help="Burp request file", action="store")
     parser.add_argument("--columns", help="Only dump column names", action="store_true")
     parser.add_argument("--dump", help="Dump content of the table and columns only if not -F specified", action="store_true")
-
+    args = parser.parse_args()
+    
     main(args)
