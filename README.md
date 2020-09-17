@@ -29,8 +29,8 @@ python sqli.py -TF table_names.txt -R request.sql --columns
 
 Pending:
 --------
-- Dump database names
-- Dump table names
-- Extend funcitionality to Time-based SQLi
+- ~~Dump database names~~ Done
+- ~~Dump table names~~ Done
+- ~~Extend funcitionality to Time-based SQLi~~ Done
 - Add MySQL support
 - Add multithreading
